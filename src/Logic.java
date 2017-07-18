@@ -8,6 +8,7 @@ public class Logic<T> {
         private Random random = new Random();
         private T val;
         private Thread thread=new Thread();
+        private Object lock=new Object();
 
         Logic(T o) {
             val = o;
@@ -25,9 +26,10 @@ public class Logic<T> {
             return scn;
         }
 
-        Logic<Integer> iOb;
+        private Logic<Integer> iOb;
 
-      synchronized   void ifChoiceDefault() throws InterruptedException {
+         void ifChoiceDefault() throws InterruptedException {
+             synchronized (lock){
             for (int i = 0; i < 16; i++) {
                 iOb = new Logic(random.nextInt(2000));
                 int defaultNumbers = iOb.getVal();
@@ -35,9 +37,10 @@ public class Logic<T> {
                 numbers.offer(defaultNumbers);
 
             }
-        }
+        }}
 
-        synchronized  void choice2() {
+          void choice2() {
+              synchronized (lock){
             System.out.println("Введите размер:");
             try {
                 iOb = new Logic<>(Integer.parseInt(scn.next()));
@@ -51,15 +54,16 @@ public class Logic<T> {
                 choice2();
            
             }
-        }
+        }}
 
-      synchronized   void add() {
+         void add() {
+             synchronized (lock){
             iOb = new Logic<>(random.nextInt());
             int number = iOb.getVal();
             numbers.offer(number);
             numbers.poll();
 
-        }
+        }}
 
     }
 

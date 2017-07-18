@@ -3,7 +3,7 @@
 public class Menu {
         private Logic hw = new Logic(Integer.class);
 
-    synchronized void menu() {
+     void menu() {
             System.out.println("Какой размер листа вы хотите:\n" + "1.По умолчанию(16).\n" + "2.Ввести свой размер.");
             choiceSize();
             System.out.println(hw.getNumbers());
@@ -11,7 +11,7 @@ public class Menu {
             choiceInMenu();
         }
 
-    synchronized private void choiceSize() {
+     private void choiceSize() {
             try {
                 int size = Integer.parseInt(hw.getScn().next());
                 switch (size) {
@@ -33,7 +33,7 @@ public class Menu {
         }
 
 
-    synchronized private void choiceInMenu() {
+     private void choiceInMenu() {
             try {
                 int choice = Integer.parseInt(hw.getScn().next());
 
