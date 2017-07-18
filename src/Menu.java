@@ -1,6 +1,7 @@
 
 
 public class Menu {
+    private Object lock=new Object();
         private Logic hw = new Logic(Integer.class);
 
      void menu() {
@@ -12,6 +13,7 @@ public class Menu {
         }
 
      private void choiceSize() {
+         synchronized (lock){
             try {
                 int size = Integer.parseInt(hw.getScn().next());
                 switch (size) {
@@ -30,10 +32,11 @@ public class Menu {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
+        }}
 
 
      private void choiceInMenu() {
+         synchronized (lock){
             try {
                 int choice = Integer.parseInt(hw.getScn().next());
 
@@ -55,7 +58,7 @@ public class Menu {
                 }
             }catch (NumberFormatException n){
                 System.out.println("Вводить можно только число!");choiceInMenu();
-            }}}
+            }}}}
 
 
 
